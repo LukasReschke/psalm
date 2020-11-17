@@ -339,6 +339,15 @@ class TaintFlowGraph extends DataFlowGraph
                                 );
                                 break;
 
+                            case TaintKind::INPUT_SSRF:
+                                $issue = new TaintedSSRF(
+                                    'Detected tainted network request',
+                                    $issue_location,
+                                    $issue_trace,
+                                    $path
+                                );
+                                break;
+                                
                             default:
                                 $issue = new TaintedCustom(
                                     'Detected tainted ' . $matching_taint,
